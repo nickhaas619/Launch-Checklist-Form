@@ -30,21 +30,21 @@ fetch('https://handlers.education.launchcode.org/static/planets.json').then(
    let form = document.querySelector("form");
   
    form.addEventListener('submit', (event) =>{
-      event.preventDefault();
+      event.preventDefault()
 
    let pilotName = document.querySelector("input[name=pilotName]");
    let pilot = pilotName.value;
    let pilotTest = Number(pilot);
 
-   let coPilotName = document.querySelector("input[name=coPilotName]")
-   let coPilot = pilotName.value;
+   let coPilotName = document.querySelector("input[name=copilotName]")
+   let coPilot = coPilotName.value;
    let coPilotTest = Number(coPilot);
 
    let fuelLevel = document.querySelector("input[name=fuelLevel]");
    let fuelValue = fuelLevel.value;
    let fuelTest = Number(fuelValue);
 
-   let cargoMass = document.querySelector("input[name=cargoMass");
+   let cargoMass = document.querySelector("input[name=cargoMass]");
    let cargoValue = cargoMass.value;
    let cargoTest = Number(cargoValue);
 
@@ -57,30 +57,31 @@ fetch('https://handlers.education.launchcode.org/static/planets.json').then(
    }else{
       pilotStatus.innerHTML = `${pilot} is ready for launch!`
       copilotStatus.innerHTML = `${coPilot} is ready for launch!`
-
-      if(fuelValue < 10000 && cargoValue > 10000) {
+   
+      if(fuelValue < 10000 && cargoValue > 10000){
          faultyItems.style.visibility = 'visible';
          fuelStatus.innerHTML = `${fuelValue} liters is not sufficient for takeoff. 10,000 liters needed.`;
          launchStatus.innerHTML = `Shuttle not ready for launch`;
-         launchStatus.style.color = 'red';
          cargoMass.innerHTML = `${cargoValue} kg weighs too much for takeoff. Make sure cargo weighs less than 10,000 kg.`
+         launchStatus.style.color = 'red';
+         
    
-      } else if (fuelValue < 10000){
+      else if (fuelValue < 10000){
       faultyItems.style.visibility = 'visible';
       fuelStatus.innerHTML = `${fuelValue} liters is not enough fuel to takeoff! minimum of 10,000 liters needed`;
       launchStatus.innerHTML = "Shuttle not ready for launch";
       launchStatus.style.color = 'red';
-      cargoValue.innerHTML = "Cargo mass low enough to launch";
-   
-   } else if(cargoValue > 10000){
+      cargoMass.innerHTML = "Cargo mass low enough to launch";
+      } 
+      else if(cargoValue > 10000){
       faultyItems.style.visibility = "visible";
+      cargoMass.innerHTML = `${cargoValue} kg is too much weight for takeoff! maximum cargo weight is 10,000 kg. `;
       launchStatus.innerHTML = "Shuttle not ready for launch";
       launchStatus.style.color = 'red';
-      cargoMass.innerHTML = `${cargoValue} kg is too much weight for takeoff! maximum cargo weight is 10,000 kg. `;
-      fuelStatus.innerHTML = "Fuel level high enough to launch";
+      fuelStatus.innerHTML = "Fuel level high enough for launch";
       
-
-   }else{
+   
+   }}else{
       faultyItems.style.visibility = 'visible';
       launchStatus.innerHTML = `Shuttle is ready for launch.`;
       launchStatus.style.color = `green`;
@@ -88,8 +89,8 @@ fetch('https://handlers.education.launchcode.org/static/planets.json').then(
       cargoValue.innerHTML = `Cargo mass low enough for launch`
    }
 
+   }
 
-}
    });
 
 
